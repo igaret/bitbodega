@@ -1,0 +1,26 @@
+@echo off
+setlocal
+
+:: Define paths
+set "toolPath=C:\Path\Of\\tool.exe"
+set "vbsFile=%TEMP%\launchTool.vbs"
+
+:: Create VBScript to run tool.exe silently
+echo Set WshShell = CreateObject("WScript.Shell") > "%vbsFile%"
+echo WshShell.Run "cmd /c ""%toolPath%""", 0, True >> "%vbsFile%"
+
+:: Run the VBScript
+cscript //nologo "%vbsFile%"
+
+:: Wait for tool.exe to exit
+:waitLoop
+tasklist /FI "IMAGENAME eq tool.exe" | find /I "tool.exe" >nul
+if not errorlevel 1 (
+    timeout /t 1 >nul
+    goto waitLoop
+)
+
+:: Cleanup
+del "%vbsFile%"
+endlocal
+exit

@@ -1,0 +1,9 @@
+alias globurl='noglob urlglobber '
+alias history=omz_history
+alias rish='export RISH_APPLICATION_ID=com.termux;sh /storage/emulated/0/DevSandbox/rish'
+alias zshrc='nano ~/.zshrc;omz reload'
+alias edit-colors='nano ~/.termux/color* ; termux-reload-settings'
+alias globurl='noglob urlglobber '
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,.venv,venv}'
+alias history=omz_history
+alias ls='ls --color=always'
